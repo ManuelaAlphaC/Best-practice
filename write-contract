@@ -1,0 +1,11 @@
+// good
+contract Withdraw {
+
+// per impostazione predefinita la funzione di ritiro costa 2300 gas, tuttavia può costare anche di più
+    function withdraw(uint256 amount) external {
+        // This forwards all available gas. Be sure to check the return value!
+        (bool success, ) = msg.sender.call.value(amount)("");
+        // check if the transfer was successful
+        require(success, "Transfer failed.");
+    } 
+    
